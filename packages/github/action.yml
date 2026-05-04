@@ -1,0 +1,70 @@
+name: 'Spec Verify'
+description: 'Specification Compliance Engine - Verify code against structured requirements'
+author: 'Phoenix AI'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  spec_file:
+    description: 'Path to specification file'
+    required: false
+    default: 'spec.yaml'
+  
+  source_dir:
+    description: 'Source code directory'
+    required: false
+    default: './src'
+  
+  test_dir:
+    description: 'Test directory'
+    required: false
+    default: './test'
+  
+  threshold:
+    description: 'Minimum spec coverage threshold (%)'
+    required: false
+    default: '80'
+    
+  test_threshold:
+    description: 'Minimum test coverage threshold (%)'
+    required: false
+    default: '60'
+    
+  fail_on_drift:
+    description: 'Fail if requirement drift is detected'
+    required: false
+    default: 'false'
+    
+  fail_on_orphans:
+    description: 'Fail if orphan code is detected'
+    required: false
+    default: 'false'
+    
+  comment_pr:
+    description: 'Add coverage report as PR comment'
+    required: false
+    default: 'true'
+
+outputs:
+  spec_coverage:
+    description: 'Specification coverage percentage'
+    
+  test_coverage:
+    description: 'Test coverage percentage'
+    
+  requirements_total:
+    description: 'Total number of requirements'
+    
+  requirements_covered:
+    description: 'Number of covered requirements'
+    
+  drift_count:
+    description: 'Number of requirements with drift'
+    
+  orphans_count:
+    description: 'Number of orphan code symbols'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
